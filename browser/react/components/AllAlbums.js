@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AllAlbums = (props) => {
+const AllAlbums  = (props) => {
 
   const albums = props.albums;
 

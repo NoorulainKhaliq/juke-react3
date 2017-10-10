@@ -6,20 +6,32 @@ export default class Playlist extends Component {
     constructor() {
         super();
         this.state = {
-            inputPlaylist = ""
-        }
+            inputPlaylist: ""
+        },
+        this.handleChange = this.handleChange.bind(this);
+        this.makePlaylist = this.makePlaylist.bind(this);
     }
-    
+
+  handleChange(event) {
+    event.preventDefault();
+    this.setState({inputPlaylist: event.target.value})
+  }
+
+  makePlaylist(event){
+    event.preventDefault();
+    console.log(this.state.inputPlaylist)
+  }
+
     render() {
         return (
             <div className="well">
-            <form className="form-horizontal">
+            <form className="form-horizontal" onSubmit={event=>this.makePlaylist(event)}>
               <fieldset>
                 <legend>New Playlist</legend>
                 <div className="form-group">
                   <label className="col-xs-2 control-label">Name</label>
                   <div className="col-xs-10">
-                    <input className="form-control" type="text"/>
+                    <input className="form-control" type="text" onChange={event=>this.handleChange(event)}/>
                   </div>
                 </div>
                 <div className="form-group">

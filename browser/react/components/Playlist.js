@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Playlist extends Component {
+    constructor() {
+        super();
+        this.state = {
+            inputPlaylist = ""
+        }
+    }
+    
     render() {
         return (
             <div className="well">

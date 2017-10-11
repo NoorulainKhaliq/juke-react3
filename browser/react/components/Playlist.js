@@ -25,10 +25,6 @@ export default class Playlist extends Component {
 
 
     render() {
-      const input = this.state.inputPlaylist;
-      function validate(input) {
-        return !input || this.state.inputPlaylist.length > 16;
-      }
       
         return (
             <div className="well">
@@ -64,6 +60,7 @@ export default class Playlist extends Component {
                 </div>
               </fieldset>
             </form>
+            {(!this.state.inputPlaylist || this.state.inputPlaylist.length > 16) ? (<div className="alert alert-warning">Please enter a name</div>) : <div></div>}
           </div>
         )
     }

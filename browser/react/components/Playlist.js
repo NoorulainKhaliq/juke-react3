@@ -9,7 +9,7 @@ export default class Playlist extends Component {
             inputPlaylist: ""
         },
         this.handleChange = this.handleChange.bind(this);
-        this.makePlaylist = this.makePlaylist.bind(this);
+        this.handlSubmit = this.handleSubmit.bind(this);
     }
 
   handleChange(event) {
@@ -17,26 +17,49 @@ export default class Playlist extends Component {
     this.setState({inputPlaylist: event.target.value})
   }
 
-  makePlaylist(event){
+  handleSubmit(event){
     event.preventDefault();
     console.log(this.state.inputPlaylist)
+    this.setState({inputPlaylist: ""})
   }
 
+
     render() {
+      const input = this.state.inputPlaylist;
+      function validate(input) {
+        return !input || this.state.inputPlaylist.length > 16;
+      }
+      
         return (
             <div className="well">
-            <form className="form-horizontal" onSubmit={event=>this.makePlaylist(event)}>
+
+            <form 
+            className="form-horizontal" 
+            onSubmit={event=>this.handleSubmit(event)}>
+
               <fieldset>
                 <legend>New Playlist</legend>
                 <div className="form-group">
                   <label className="col-xs-2 control-label">Name</label>
                   <div className="col-xs-10">
-                    <input className="form-control" type="text" onChange={event=>this.handleChange(event)}/>
+                    
+                  <input 
+                    className="form-control" 
+                    type="text" 
+                    value={this.state.inputPlaylist} 
+                    onChange={event=>this.handleChange(event)}/>
+
                   </div>
                 </div>
                 <div className="form-group">
                   <div className="col-xs-10 col-xs-offset-2">
-                    <button type="submit" className="btn btn-success">Create Playlist</button>
+
+                    <button 
+                    disabled={!this.state.inputPlaylist || this.state.inputPlaylist.length > 16}
+                    type="submit" 
+                    className="btn btn-success">Create Playlist
+                    </button>
+
                   </div>
                 </div>
               </fieldset>
